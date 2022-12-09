@@ -26,4 +26,5 @@ Route::prefix('mypage')
 ->middleware('auth')
 ->group(function() {
     Route::get('edit-profile', [ProfileController::class, 'showProfileEditForm'])->name('mypage.edit-profile');
+    Route::post('edit-profile', [ProfileController::class, 'editProfile'])->name('mypage.edit-profile');
 });
