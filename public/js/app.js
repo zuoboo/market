@@ -37296,6 +37296,16 @@ module.exports = function(module) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+document.querySelector('.image-picker input').addEventListener('change', function (e) {
+  //画像が選択されたときの処理
+  var input = e.target;
+  var reader = new FileReader();
+  // 画像を読み込んだ後の処理
+  reader.onload = function (e) {
+    input.closest('.image-picker').querySelector('img').src = e.target.result;
+  };
+  reader.readAsDataURL(input.files[0]);
+});
 
 /***/ }),
 
