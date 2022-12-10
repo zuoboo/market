@@ -22,7 +22,8 @@ Route::get('/', [ItemsController::class, 'showItems'])->name('top');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('items/{item}', function(){return "商品詳細";})->name('item');
+Route::get('items/{item}', [ItemsController::class, 'showItemDetail'])->name('item');
+Route::get('items/{item}/buy', [ItemsController::class, 'showItemDetail'])->name('item.buy');
 
 Route::middleware('auth')->group(function() {
     Route::get('sell', [SellController::class, 'showSellForm'])->name('sell');

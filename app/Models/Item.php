@@ -15,6 +15,15 @@ class Item extends Model
     {
         return $this->belongsTo(SecondaryCategory::class);
     }
+    public function seller()
+    {
+        return $this->belongsTo(User::class,'seller_id');
+    }
+    public function condition()
+    {
+        return $this->belongsTo(ItemCondition::class,'item_condition_id');
+    }
+
 
 
     // 出品中かどうかを返すアクセサ

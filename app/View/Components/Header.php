@@ -2,6 +2,8 @@
 
 namespace App\View\Components;
 
+use App\Models\PrimaryCategory;
+use Illuminate\Support\Facades\Request;
 use Illuminate\View\Component;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,6 +28,22 @@ class Header extends Component
     {
         $user = Auth::user();
 
-        return view('components.header', compact('user'));
+        // カテゴリーの選択肢
+        $categories = PrimaryCategory::query()
+        ->with([
+            'secondaryCategories' => function ($query) {
+                $query->orderBy('sort_no');
+            }
+        ])
+        ->orderBy('sort_no')
+        ->get();
+
+        // 入力された値を渡す
+        $defaults = [
+            'category' => Request::input('category', ''),
+            'keyword'  => Request::input('keyword', ''),
+        ];
+
+        return view('components.header', compact('user', 'categories', 'defaults'));
     }
 }
