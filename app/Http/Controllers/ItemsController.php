@@ -10,7 +10,6 @@ class ItemsController extends Controller
     public function showItems(Request $request)
     {
         $query = Item::query();
-
         // カテゴリで絞り込み
         if ($request->filled('category')) {
             list($categoryType, $categoryID) = explode(':', $request->input('category'));
@@ -53,5 +52,14 @@ class ItemsController extends Controller
     public function showItemDetail(Item $item)
     {
         return view('items.item_detail', compact('item', $item));
+    }
+
+    public function showBuyItemForm(Item $item)
+    {
+        if(!$item->isStateSelling) {
+            abort(404);
+        }
+
+        return view('items.item_buy_form', compact('item'));
     }
 }

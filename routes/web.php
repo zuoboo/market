@@ -23,7 +23,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('items/{item}', [ItemsController::class, 'showItemDetail'])->name('item');
-Route::get('items/{item}/buy', [ItemsController::class, 'showItemDetail'])->name('item.buy');
+Route::get('items/{item}/buy', [ItemsController::class, 'showBuyItemForm'])->name('item.buy');
 
 Route::middleware('auth')->group(function() {
     Route::get('sell', [SellController::class, 'showSellForm'])->name('sell');
