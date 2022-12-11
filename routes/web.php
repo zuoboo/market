@@ -26,7 +26,7 @@ Route::get('items/{item}', [ItemsController::class, 'showItemDetail'])->name('it
 
 Route::middleware('auth')->group(function() {
     Route::get('items/{item}/buy', [ItemsController::class, 'showBuyItemForm'])->name('item.buy');
-    Route::post('items/{item}/buy', [ItemsController::class, 'showBuyItemForm'])->name('item.buy');
+    Route::post('items/{item}/buy', [ItemsController::class, 'buyItem'])->name('item.buy');
 
     Route::get('sell', [SellController::class, 'showSellForm'])->name('sell');
     Route::post('sell', [SellController::class, 'sellItem'])->name('sell');
